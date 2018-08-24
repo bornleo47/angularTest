@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'restApp';
+
+response:any;
+
+constructor(private http: HttpClient)
+{
+
 }
+
+ngOnInit(){
+  this.http.get("http://localhost:8080/empJson")
+  .subscribe((response)=>
+  {this.response=response;
+  console.log(response);
+})
+
+}
+
+}
+
